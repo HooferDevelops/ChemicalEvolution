@@ -46,7 +46,6 @@ public class ChemistryIncubator extends BaseEntityBlock {
     public ChemistryIncubator(BlockBehaviour.Properties props) {
         super(props);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
-        ChemicalEvolution.LOGGER.info("RENDERING BLOCK");
     }
 
     @Override

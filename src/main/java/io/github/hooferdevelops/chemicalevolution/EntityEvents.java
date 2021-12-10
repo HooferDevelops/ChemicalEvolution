@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 public final class EntityEvents {
     @SubscribeEvent
     public static void EntityAttributeCreationEvent(EntityAttributeCreationEvent event) {
-        ChemicalEvolution.LOGGER.info("ENTITY TIME WOO");
         event.put(Registration.COW_FAKE.get(),
                 Mob.createMobAttributes()
                         .add(Attributes.MAX_HEALTH, 5d)

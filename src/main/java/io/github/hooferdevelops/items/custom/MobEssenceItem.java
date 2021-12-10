@@ -10,8 +10,6 @@ public class MobEssenceItem extends Item implements DyeableMobEssenceItem {
 
     @Override
     public String getDescriptionId() {
-        ChemicalEvolution.LOGGER.info("REEE");
-        ChemicalEvolution.LOGGER.info(this.getOrCreateDescriptionId());
         return this.getOrCreateDescriptionId();
     }
 }
