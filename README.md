@@ -7,4 +7,6 @@ A Minecraft 1.18 Forge mod. This was made for the purpose of me learning Java a 
 TODO
 
 # Building
-This should be fairly straightforward for any mod developers. Use latest JDK (https://adoptium.net/?variant=openjdk17) with your preferred Java IDE (Created with IntelliJ).
+This should be fairly straightforward for any mod developers. 
+
+Use latest JDK (https://adoptium.net/?variant=openjdk17) with your preferred Java IDE (Created with IntelliJ).
