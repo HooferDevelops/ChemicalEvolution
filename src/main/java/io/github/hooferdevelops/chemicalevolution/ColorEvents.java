@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ColorEvents {
     @SubscribeEvent
     public static void ColorHandlerEvent(ColorHandlerEvent.Item event){
-        ChemicalEvolution.LOGGER.info("COLOR TIME");
         event.getItemColors().register((stack, color) -> {
             return color > 0 ? -1 : ((DyeableMobEssenceItem)stack.getItem()).getColor(stack);
         }, Registration.MOB_ESSENCE.get());

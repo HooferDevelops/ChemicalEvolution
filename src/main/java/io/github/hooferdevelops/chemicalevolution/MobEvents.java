@@ -70,19 +70,10 @@ public class MobEvents {
         }
 
         int avg = w*h;
-        ChemicalEvolution.LOGGER.info(r);
-        ChemicalEvolution.LOGGER.info(g);
-        ChemicalEvolution.LOGGER.info(b);
-        ChemicalEvolution.LOGGER.info("----");
-        ChemicalEvolution.LOGGER.info(r/avg);
-        ChemicalEvolution.LOGGER.info(g/avg);
-        ChemicalEvolution.LOGGER.info(b/avg);
 
         //Color res = new Color(r/avg/255,g/avg/255,b/avg/255);
 
         avg = getIntFromColor(r/avg,g/avg,b/avg);
-        ChemicalEvolution.LOGGER.info("AVERAGE COLOR--");
-        ChemicalEvolution.LOGGER.info(avg);
         return avg;
     }
 
