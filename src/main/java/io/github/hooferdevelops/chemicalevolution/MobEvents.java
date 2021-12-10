@@ -2,9 +2,17 @@ package io.github.hooferdevelops.chemicalevolution;
 
 import io.github.hooferdevelops.Registration;
 import io.github.hooferdevelops.items.custom.DyeableMobEssenceItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -12,6 +20,7 @@ import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.I18NParser;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
@@ -20,6 +29,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ChemicalEvolution.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MobEvents {
@@ -94,7 +104,7 @@ public class MobEvents {
                     new ItemEntity(
                             entity.getLevel(),
                             entity.getX(), entity.getY(), entity.getZ(),
-                            DyeableMobEssenceItem.modifyEssence(essence, egg.getColor(0), entity.getType().getDescription().getString())
+                            DyeableMobEssenceItem.modifyEssence(essence, egg.getColor(0), entity)
                     )
             );
         }
