@@ -1,4 +1,4 @@
-![banner](https://raw.githubusercontent.com/HooferDevelops/ChemicalEvolution/main/src/main/resources/chemicalevolution.png)
+![banner](https://raw.githubusercontent.com/HooferDevelops/ChemicalEvolution/master/src/main/resources/chemicalevolution.png)
 
 # Chemical Evolution
 A Minecraft 1.18 Forge mod. This was made for the purpose of me learning Java a bit more, as well as the want to make a Minecraft mod.
