@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#o#",
+    " # "
+  ],
+
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "o": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+
+  "result": {
+    "item": "chemicalevolution:glasschemistrybottle",
+    "count": 3
+  }
+}

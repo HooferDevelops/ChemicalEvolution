@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "chemicalevolution:block/chemicalincubator" },
+    "facing=south": { "model": "chemicalevolution:block/chemicalincubator", "y":  180},
+    "facing=west": { "model": "chemicalevolution:block/chemicalincubator", "y":  270},
+    "facing=east": { "model": "chemicalevolution:block/chemicalincubator", "y":  90}
+  }
+}
