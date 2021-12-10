@@ -16,7 +16,9 @@ public final class EntityEvents {
         ChemicalEvolution.LOGGER.info("ENTITY TIME WOO");
         event.put(Registration.COW_FAKE.get(),
                 Mob.createMobAttributes()
-                        .add(Attributes.MAX_HEALTH, 5d).build());
+                        .add(Attributes.MAX_HEALTH, 5d)
+                        .add(Attributes.JUMP_STRENGTH, 100d)
+                        .build());
     }
 
     @SubscribeEvent

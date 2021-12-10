@@ -103,7 +103,7 @@ public class MobEvents {
                     new ItemEntity(
                             entity.getLevel(),
                             entity.getX(), entity.getY(), entity.getZ(),
-                            DyeableMobEssenceItem.modifyEssence(essence, egg.getColor(0), entity.getType().getDescription().getString()) //getColorFromResource(resource))
+                            DyeableMobEssenceItem.modifyEssence(essence, egg.getColor(0), entity.getType().getDescription().getString())
                     )
             );
         }
