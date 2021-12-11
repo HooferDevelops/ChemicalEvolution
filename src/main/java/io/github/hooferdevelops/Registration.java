@@ -59,6 +59,14 @@ public class Registration {
             )
     );
 
+    public static final RegistryObject<Item> CURED_GLASS_CHEMISTRY_BOTTLE = ITEMS.register(
+            "curedglasschemistrybottle",
+            () -> new RadioactiveGlassChemistryBottle(
+                    new Item.Properties().stacksTo(1).craftRemainder(GLASS_CHEMISTRY_BOTTLE.get()).food((new FoodProperties.Builder()).nutrition(4).saturationMod(3F).effect(new MobEffectInstance(MobEffects.CONFUSION, 15, 0), 1.0F).build()).tab(CreativeModeTab.TAB_BREWING)
+            )
+    );
+
+
     public static final RegistryObject<Item> MOB_ESSENCE = ITEMS.register(
             "mobessence",
             () -> new MobEssenceItem(

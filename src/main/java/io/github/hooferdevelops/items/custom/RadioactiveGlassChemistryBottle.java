@@ -1,19 +1,37 @@
 package io.github.hooferdevelops.items.custom;
 
+import io.github.hooferdevelops.Registration;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
 public class RadioactiveGlassChemistryBottle extends Item {
     public RadioactiveGlassChemistryBottle(Properties props) {
         super(props);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack p_41348_, Level p_41349_, LivingEntity p_41350_) {
+        super.finishUsingItem(p_41348_, p_41349_, p_41350_);
+
+        if (p_41348_.isEmpty()) {
+            return new ItemStack(Registration.GLASS_CHEMISTRY_BOTTLE.get());
+        } else {
+            if (p_41350_ instanceof Player && !((Player)p_41350_).getAbilities().instabuild) {
+                ItemStack itemstack = new ItemStack(Registration.GLASS_CHEMISTRY_BOTTLE.get());
+                Player player = (Player)p_41350_;
+                if (!player.getInventory().add(itemstack)) {
+                    player.drop(itemstack, false);
+                }
+            }
+
+            return p_41348_;
+        }
     }
 
     @Override
