@@ -1,5 +1,7 @@
 package io.github.hooferdevelops.items.custom;
 
+import io.github.hooferdevelops.chemicalevolution.ChemicalEvolution;
+import io.github.hooferdevelops.utility.IncrementalNumber;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -7,13 +9,32 @@ import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import javax.annotation.Nullable;
+import java.awt.*;
 import java.util.Random;
 
 public interface DyeableMobEssenceItem {
+    @Nullable
+    default int getIntFromColor(float Red, float Green, float Blue){
+        int R = Math.round(Red);
+        int G = Math.round(Green);
+        int B = Math.round( Blue);
+
+        R = (R << 16) & 0x00FF0000;
+        G = (G << 8) & 0x0000FF00;
+        B = B & 0x000000FF;
+
+        return 0xFF000000 | R | G | B;
+    }
+
     default int getColor(ItemStack p_41122_) {
         CompoundTag compoundtag = p_41122_.getTagElement("data");
-        Random rand = new Random();
-        return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : rand.nextInt(16777215);//16109122;
+
+        MobEssenceItem item = (MobEssenceItem) p_41122_.getItem();
+        Color fallbackColor = Color.getHSBColor(item.randomColorDefault.getCurrentValue()/360, 1, 1);
+        int fallbackColorInt = getIntFromColor(fallbackColor.getRed(), fallbackColor.getBlue(), fallbackColor.getGreen());
+
+        return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : fallbackColorInt;//16109122;
     }
 
     default void setColor(ItemStack p_41116_, int p_41117_) {
