@@ -12,13 +12,22 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.I18NParser;
 import net.minecraftforge.fml.common.Mod;
@@ -108,5 +117,32 @@ public class MobEvents {
                     )
             );
         }
+    }
+
+
+    @SubscribeEvent
+    public static InteractionResult EntityInteract(PlayerInteractEvent.EntityInteract event){
+        if (event.getHand() == InteractionHand.MAIN_HAND && event.getTarget() instanceof Cow){
+            ItemStack item = event.getItemStack();
+            if (item.getItem() == Registration.GLASS_CHEMISTRY_BOTTLE.get()) {
+                if (!event.getWorld().isClientSide()){
+                    item.interactLivingEntity(event.getPlayer(), (LivingEntity) event.getTarget(), event.getHand());
+
+                    //event.getTarget().playSound(SoundEvents.COW_HURT, 1.0F, 1.0F);
+                    event.getTarget().playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
+                    event.getTarget().hurt(DamageSource.playerAttack(event.getPlayer()), 0);
+                    ((Cow) event.getTarget()).addEffect(new MobEffectInstance(MobEffects.POISON, 5*20, 1));
+
+
+                    event.getPlayer().getInventory().add(new ItemStack(Registration.RADIOACTIVE_GLASS_CHEMISTRY_BOTTLE.get(), 1));
+
+                    if (!event.getPlayer().getAbilities().instabuild) {
+                        item.shrink(1);
+                    }
+                }
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return InteractionResult.PASS;
     }
 }

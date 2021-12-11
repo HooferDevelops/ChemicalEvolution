@@ -36,32 +36,6 @@ public class ChemicalEvolution {
         //MinecraftForge.EVENT_BUS.register(new RenderEvents());
     }
 
-    @SubscribeEvent
-    public static InteractionResult EntityInteract(PlayerInteractEvent.EntityInteract event){
-        if (event.getHand() == InteractionHand.MAIN_HAND && event.getTarget() instanceof Cow){
-            ItemStack item = event.getItemStack();
-            if (item.getItem() == Registration.GLASS_CHEMISTRY_BOTTLE.get()) {
-                if (!event.getWorld().isClientSide()){
-                    item.interactLivingEntity(event.getPlayer(), (LivingEntity) event.getTarget(), event.getHand());
-
-                    //event.getTarget().playSound(SoundEvents.COW_HURT, 1.0F, 1.0F);
-                    event.getTarget().playSound(SoundEvents.COW_MILK, 1.0F, 1.0F);
-                    event.getTarget().hurt(DamageSource.playerAttack(event.getPlayer()), 0);
-                    ((Cow) event.getTarget()).addEffect(new MobEffectInstance(MobEffects.POISON, 5*20, 1));
-
-
-                    event.getPlayer().getInventory().add(new ItemStack(Registration.RADIOACTIVE_GLASS_CHEMISTRY_BOTTLE.get(), 1));
-
-                    if (!event.getPlayer().getAbilities().instabuild) {
-                        item.shrink(1);
-                    }
-                }
-                return InteractionResult.SUCCESS;
-            }
-        }
-        return InteractionResult.PASS;
-    }
-
     public void setup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(Registration.CHEMISTRY_INCUBATOR.get(), RenderType.translucent());
         LOGGER.info("Initialized TestMod");
