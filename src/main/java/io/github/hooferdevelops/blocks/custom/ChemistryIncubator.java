@@ -2,6 +2,7 @@ package io.github.hooferdevelops.blocks.custom;
 
 import io.github.hooferdevelops.Registration;
 import io.github.hooferdevelops.chemicalevolution.ChemicalEvolution;
+import io.github.hooferdevelops.utility.VoxelShapeUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -34,14 +35,12 @@ public class ChemistryIncubator extends BaseEntityBlock {
     private static final VoxelShape SHAPE_N = Stream.of(Block.box(13, 2, 3, 15, 11, 13), Block.box(0, 0, 0, 16, 2, 16), Block.box(1, 2, 13, 15, 11, 15), Block.box(1, 2, 1, 15, 11, 3), Block.box(4, 8, 4, 12, 10, 12), Block.box(5, 10, 5, 11, 11, 11), Block.box(1, 11, 1, 15, 16, 15), Block.box(3, 9, 3, 4, 11, 13), Block.box(4, 9, 12, 12, 11, 13), Block.box(4, 9, 3, 12, 11, 4), Block.box(12, 9, 3, 13, 11, 13), Block.box(1, 2, 3, 3, 11, 13)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-    private static final VoxelShape SHAPE_E = Stream.of(Block.box(3, 2, 13, 13, 11, 15), Block.box(0, 0, 0, 16, 2, 16), Block.box(1, 2, 1, 3, 11, 15), Block.box(13, 2, 1, 15, 11, 15), Block.box(4, 8, 4, 12, 10, 12), Block.box(5, 10, 5, 11, 11, 11), Block.box(1, 11, 1, 15, 16, 15), Block.box(3, 9, 3, 13, 11, 4), Block.box(3, 9, 4, 4, 11, 12), Block.box(12, 9, 4, 13, 11, 12), Block.box(3, 9, 12, 13, 11, 13), Block.box(3, 2, 1, 13, 11, 3)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    private static final VoxelShape SHAPE_E = VoxelShapeUtil.rotateShape(Direction.NORTH, Direction.EAST, SHAPE_N);
 
-    private static final VoxelShape SHAPE_S = Stream.of(Block.box(1, 2, 3, 3, 11, 13), Block.box(0, 0, 0, 16, 2, 16), Block.box(1, 2, 1, 15, 11, 3), Block.box(1, 2, 13, 15, 11, 15), Block.box(4, 8, 4, 12, 10, 12), Block.box(5, 10, 5, 11, 11, 11), Block.box(1, 11, 1, 15, 16, 15), Block.box(12, 9, 3, 13, 11, 13), Block.box(4, 9, 3, 12, 11, 4), Block.box(4, 9, 12, 12, 11, 13), Block.box(3, 9, 3, 4, 11, 13), Block.box(13, 2, 3, 15, 11, 13)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    private static final VoxelShape SHAPE_S = VoxelShapeUtil.rotateShape(Direction.NORTH, Direction.SOUTH, SHAPE_N);
 
-    private static final VoxelShape SHAPE_W = Stream.of(Block.box(3, 2, 1, 13, 11, 3), Block.box(0, 0, 0, 16, 2, 16), Block.box(13, 2, 1, 15, 11, 15), Block.box(1, 2, 1, 3, 11, 15), Block.box(4, 8, 4, 12, 10, 12), Block.box(5, 10, 5, 11, 11, 11), Block.box(1, 11, 1, 15, 16, 15), Block.box(3, 9, 12, 13, 11, 13), Block.box(12, 9, 4, 13, 11, 12), Block.box(3, 9, 4, 4, 11, 12), Block.box(3, 9, 3, 13, 11, 4), Block.box(3, 2, 13, 13, 11, 15)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    private static final VoxelShape SHAPE_W = VoxelShapeUtil.rotateShape(Direction.NORTH, Direction.WEST, SHAPE_N);
+
 
     public ChemistryIncubator(BlockBehaviour.Properties props) {
         super(props);
